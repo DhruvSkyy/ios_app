@@ -18,54 +18,52 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            ZStack {
-                // Spotify-style dark background
-                LinearGradient(gradient: Gradient(colors: [.black, .gray.opacity(0.3)]),
-                               startPoint: .topLeading, endPoint: .bottomTrailing)
-                    .edgesIgnoringSafeArea(.all)
+            VStack(spacing: 12) {
+                // Search Bar
+                HStack(spacing: 8) {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.gray)
 
-                VStack(spacing: 16) {
-                    // Glassy search bar
-                    HStack {
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(.white.opacity(0.7))
-                        TextField("Search websites...", text: $searchText)
-                            .foregroundColor(.white)
-                            .autocapitalization(.none)
-                            .disableAutocorrection(true)
-                    }
-                    .padding()
-                    .background(BlurView(style: .systemUltraThinMaterialDark))
-                    .cornerRadius(15)
-                    .padding(.horizontal)
+                    TextField("Search websites...", text: $searchText)
+                        .foregroundColor(.primary)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
+                }
+                .padding(12)
+                .background(Color(UIColor.secondarySystemBackground))
+                .cornerRadius(12)
+                .padding(.horizontal)
+                .shadow(color: Color.black.opacity(0.05), radius: 2, x: 0, y: 1)
 
-                    ScrollView {
-                        LazyVStack(spacing: 12) {
-                            ForEach(filteredWebsites) { website in
-                                WebsiteRow(website: website)
-                                    .background(Color.white.opacity(0.05))
-                                    .cornerRadius(16)
-                                    .padding(.horizontal)
-                                    .shadow(radius: 4)
-                            }
+                // Card-style website list
+                ScrollView {
+                    LazyVStack(spacing: 12) {
+                        ForEach(filteredWebsites) { website in
+                            WebsiteRow(website: website)
+                                .frame(maxWidth: .infinity)
+                                .padding(.horizontal)
                         }
-                        .padding(.vertical)
                     }
+                    .padding(.top)
                 }
-                .navigationTitle("Websites")
-                .foregroundColor(.white)
-                .toolbar {
-                    ToolbarItemGroup(placement: .navigationBarTrailing) {
-                        Button(action: { isSorted.toggle() }) {
-                            Image(systemName: isSorted ? "arrow.up.arrow.down.circle.fill" : "arrow.up.arrow.down.circle")
-                                .foregroundColor(.white)
-                        }
-                        ThemeToggleButton(isDarkMode: $isDarkMode)
+
+            }
+            .navigationTitle("Websites")
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button(action: { isSorted.toggle() }) {
+                        Label(isSorted ? "Unsort" : "Sort A–Z", systemImage: isSorted ? "arrow.up.arrow.down.circle.fill" : "arrow.up.arrow.down.circle")
+                            .labelStyle(IconOnlyLabelStyle())
+                            .imageScale(.large)
+                            .foregroundColor(.accentColor)
                     }
+
+                    ThemeToggleButton(isDarkMode: $isDarkMode)
+                        .imageScale(.large)
                 }
-                .onAppear {
-                    viewModel.fetchWebsites()
-                }
+            }
+            .onAppear {
+                viewModel.fetchWebsites()
             }
         }
     }

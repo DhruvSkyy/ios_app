@@ -3,82 +3,85 @@ import SVGKit
 
 struct SVGImageView: View {
     let urlString: String
+    var width: CGFloat = 48
+    var height: CGFloat = 48
+
     @State private var uiImage: UIImage? = nil
     @State private var loadFailed = false
 
     var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                if let uiImage = uiImage {
-                    Image(uiImage: uiImage)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: geometry.size.width, height: geometry.size.height)
-                } else if loadFailed {
-                    // Final fallback image
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.gray)
-
+        ZStack {
+            if let uiImage = uiImage {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    // These two lines ensure the final SwiftUI image
+                    // respects the bounding box without cropping:
+                    .frame(width: width, height: height)
+            } else if loadFailed {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color.gray)
+                    .overlay(
                         Image(systemName: "xmark.octagon.fill")
                             .resizable()
                             .scaledToFit()
-                            .padding(8)
                             .foregroundColor(.white)
-                    }
-                } else {
-                    // Temporary loading view
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.gray)
-
-                        Image(systemName: "xmark.octagon.fill")
-                            .resizable()
-                            .scaledToFit()
                             .padding(8)
-                            .foregroundColor(.white)
+                    )
+                    .frame(width: width, height: height)
+            } else {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color.gray.opacity(0.3))
+                    .overlay(
+                        ProgressView()
+                    )
+                    .frame(width: width, height: height)
+                    .onAppear {
+                        loadSVGAsync()
                     }
-                        .onAppear {
-                            loadSVGAsync(size: geometry.size)
-                        }
-                }
             }
         }
+        .cornerRadius(8)
     }
 
-    private func loadSVGAsync(size: CGSize) {
-        guard size.width > 0, size.height > 0,
-              !size.width.isNaN, !size.height.isNaN,
-              let url = URL(string: urlString) else {
+    private func loadSVGAsync() {
+        guard let url = URL(string: urlString) else {
             self.loadFailed = true
             return
         }
 
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard error == nil,
-                  let data = data,
-                  let svgImage = SVGKImage(data: data) else {
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            guard
+                error == nil,
+                let data = data,
+                let svgImage = SVGKImage(data: data)
+            else {
                 DispatchQueue.main.async {
                     self.loadFailed = true
                 }
                 return
             }
 
-            let scale = UIScreen.main.scale
-            let targetSize = CGSize(width: size.width * scale, height: size.height * scale)
-            svgImage.scaleToFit(inside: targetSize)
+            // If needed, set preserveAspectRatio explicitly before scaling:
+            // svgImage.bbImporter?.preserveAspectRatio = .xMidYMid
+            // svgImage.bbImporter?.meetOrSlice = .meet
 
-            guard svgImage.size.width > 0, svgImage.size.height > 0,
-                  !svgImage.size.width.isNaN, !svgImage.size.height.isNaN,
-                  let layer = svgImage.caLayerTree else {
+            // Remove *UIScreen.main.scale to avoid oversized frames that crop:
+            svgImage.scaleToFit(inside: CGSize(width: width, height: height))
+
+            guard
+                svgImage.size.width > 0,
+                svgImage.size.height > 0,
+                let layer = svgImage.caLayerTree
+            else {
                 DispatchQueue.main.async {
                     self.loadFailed = true
                 }
                 return
             }
 
+            // Draw the scaled layer into a UIImage:
             layer.frame = CGRect(origin: .zero, size: svgImage.size)
-
             let renderer = UIGraphicsImageRenderer(size: svgImage.size)
             let image = renderer.image { ctx in
                 layer.render(in: ctx.cgContext)
