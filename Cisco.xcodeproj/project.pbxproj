@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FCD9519D2DAD66D1004EB950 /* SVGKit in Frameworks */ = {isa = PBXBuildFile; productRef = FCD9519C2DAD66D1004EB950 /* SVGKit */; };
+		FCD9519F2DAD78A4004EB950 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FCD9519E2DAD789C004EB950 /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		FCD951742DA83958004EB950 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +32,7 @@
 		FCD951622DA83957004EB950 /* Cisco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cisco.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCD951732DA83958004EB950 /* CiscoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CiscoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCD9517D2DA83958004EB950 /* CiscoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CiscoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCD9519E2DAD789C004EB950 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -52,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCD9519D2DAD66D1004EB950 /* SVGKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +82,7 @@
 		FCD951592DA83957004EB950 = {
 			isa = PBXGroup;
 			children = (
+				FCD9519E2DAD789C004EB950 /* README.md */,
 				FCD951642DA83957004EB950 /* Cisco */,
 				FCD951762DA83958004EB950 /* CiscoTests */,
 				FCD951802DA83958004EB950 /* CiscoUITests */,
@@ -112,6 +120,7 @@
 			);
 			name = Cisco;
 			packageProductDependencies = (
+				FCD9519C2DAD66D1004EB950 /* SVGKit */,
 			);
 			productName = Cisco;
 			productReference = FCD951622DA83957004EB950 /* Cisco.app */;
@@ -195,6 +204,9 @@
 			);
 			mainGroup = FCD951592DA83957004EB950;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				FCD951992DAD2D42004EB950 /* XCRemoteSwiftPackageReference "SVGKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FCD951632DA83957004EB950 /* Products */;
 			projectDirPath = "";
@@ -212,6 +224,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCD9519F2DAD78A4004EB950 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,6 +598,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FCD951992DAD2D42004EB950 /* XCRemoteSwiftPackageReference "SVGKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SVGKit/SVGKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FCD9519C2DAD66D1004EB950 /* SVGKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FCD951992DAD2D42004EB950 /* XCRemoteSwiftPackageReference "SVGKit" */;
+			productName = SVGKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FCD9515A2DA83957004EB950 /* Project object */;
 }

@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct CiscoApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
+    @AppStorage("isDarkMode") private var isDarkMode = false
+
+        var body: some Scene {
+            WindowGroup {
+                ContentView()
+                    .preferredColorScheme(isDarkMode ? .dark : .light)
+            }
         }
-    }
 }

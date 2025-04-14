@@ -1,54 +1,59 @@
 import SwiftUI
 
 struct ContentView: View {
+    @AppStorage("isDarkMode") private var isDarkMode = false
     @StateObject private var viewModel = WebsiteViewModel()
     @State private var isSorted = false
+    @State private var searchText = ""
 
-    var sortedWebsites: [Website] {
-        isSorted ? viewModel.websites.sorted { $0.name < $1.name } : viewModel.websites
+    var filteredWebsites: [Website] {
+        let source = isSorted ? viewModel.websites.sorted(by: { $0.name < $1.name }) : viewModel.websites
+
+        if searchText.isEmpty {
+            return source
+        }
+
+        return source.filter {
+            $0.name.localizedCaseInsensitiveContains(searchText) ||
+            $0.url.localizedCaseInsensitiveContains(searchText) ||
+            $0.description.localizedCaseInsensitiveContains(searchText)
+        }
     }
 
     var body: some View {
         NavigationView {
-            List(sortedWebsites) { website in
-                HStack(alignment: .top, spacing: 12) {
-                    AsyncImage(url: URL(string: website.icon ?? "")) { phase in
-                        if let image = phase.image {
-                            image
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                                .cornerRadius(8)
-                        } else if phase.error != nil {
-                            Color.red
-                                .frame(width: 40, height: 40)
-                                .cornerRadius(8)
-                        } else {
-                            ProgressView()
-                                .frame(width: 40, height: 40)
-                        }
-                    }
+            VStack {
+                // Enhanced Search Bar
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.gray)
 
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(website.name)
-                            .font(.headline)
-                        Text(website.description)
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                        Text(website.url)
-                            .font(.caption)
-                            .foregroundColor(.blue)
-                    }
+                    TextField("Search websites...", text: $searchText)
+                        .foregroundColor(.primary)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
                 }
-                .padding(.vertical, 4)
+                .padding(10)
+                .background(Color(UIColor.secondarySystemBackground))
+                .cornerRadius(10)
+                .padding(.horizontal)
+                .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
+
+                // Website list
+                List(filteredWebsites) { website in
+                    WebsiteRow(website: website)
+                }
             }
             .navigationTitle("Websites")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button(action: {
                         isSorted.toggle()
                     }) {
                         Text(isSorted ? "Unsort" : "Sort A-Z")
                     }
+
+                    ThemeToggleButton(isDarkMode: $isDarkMode)
                 }
             }
             .onAppear {
@@ -56,4 +61,6 @@ struct ContentView: View {
             }
         }
     }
+
+
 }
