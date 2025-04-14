@@ -1,60 +1,47 @@
-//
-//  WebsiteRow.swift
-//  Cisco
-//
-//  Created by Dhruv Sharma on 14/04/2025.
-//
-
 import SwiftUI
 
 struct WebsiteRow: View {
     let website: Website
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack(alignment: .top, spacing: 12) {
-                if let iconURL = website.icon {
-                    if iconURL.hasSuffix(".svg") {
-                        SVGImageView(urlString: iconURL)
-                            .frame(width: 40, height: 40)
-                            .cornerRadius(8)
-                    } else {
-                        AsyncImage(url: URL(string: iconURL)) { phase in
-                            if let image = phase.image {
-                                image
-                                    .resizable()
-                                    .frame(width: 40, height: 40)
-                                    .cornerRadius(8)
-                            } else if phase.error != nil {
-                                Color.red
-                                    .frame(width: 40, height: 40)
-                                    .cornerRadius(8)
-                            } else {
-                                ProgressView()
-                                    .frame(width: 40, height: 40)
-                            }
+        HStack(alignment: .top, spacing: 16) {
+            // Logo/Icon
+            if let iconURL = website.icon {
+                if iconURL.hasSuffix(".svg") {
+                    SVGImageView(urlString: iconURL)
+                        .frame(width: 50, height: 50)
+                        .cornerRadius(10)
+                } else {
+                    AsyncImage(url: URL(string: iconURL)) { phase in
+                        if let image = phase.image {
+                            image.resizable()
+                        } else if phase.error != nil {
+                            Color.red
+                        } else {
+                            ProgressView()
                         }
                     }
+                    .frame(width: 50, height: 50)
+                    .cornerRadius(10)
                 }
+            }
 
+            VStack(alignment: .leading, spacing: 6) {
+                Text(website.name)
+                    .font(.title3.weight(.semibold))
+                    .foregroundColor(.white)
 
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(website.name)
-                        .font(.headline)
-                    Text(website.description)
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
+                Text(website.description)
+                    .font(.footnote)
+                    .foregroundColor(.white.opacity(0.75))
 
-                    // Tappable URL
-                    if let url = URL(string: website.url) {
-                        Link(website.url, destination: url)
-                            .font(.caption)
-                            .foregroundColor(.blue)
-                            .underline()
-                    }
+                if let url = URL(string: website.url) {
+                    Link("Visit site →", destination: url)
+                        .font(.footnote.bold())
+                        .foregroundColor(.green)
                 }
             }
         }
-        .padding(.vertical, 4)
+        .padding()
     }
 }

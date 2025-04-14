@@ -8,11 +8,7 @@ struct ContentView: View {
 
     var filteredWebsites: [Website] {
         let source = isSorted ? viewModel.websites.sorted(by: { $0.name < $1.name }) : viewModel.websites
-
-        if searchText.isEmpty {
-            return source
-        }
-
+        if searchText.isEmpty { return source }
         return source.filter {
             $0.name.localizedCaseInsensitiveContains(searchText) ||
             $0.url.localizedCaseInsensitiveContains(searchText) ||
@@ -22,45 +18,55 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                // Enhanced Search Bar
-                HStack {
-                    Image(systemName: "magnifyingglass")
-                        .foregroundColor(.gray)
+            ZStack {
+                // Spotify-style dark background
+                LinearGradient(gradient: Gradient(colors: [.black, .gray.opacity(0.3)]),
+                               startPoint: .topLeading, endPoint: .bottomTrailing)
+                    .edgesIgnoringSafeArea(.all)
 
-                    TextField("Search websites...", text: $searchText)
-                        .foregroundColor(.primary)
-                        .autocapitalization(.none)
-                        .disableAutocorrection(true)
-                }
-                .padding(10)
-                .background(Color(UIColor.secondarySystemBackground))
-                .cornerRadius(10)
-                .padding(.horizontal)
-                .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
-
-                // Website list
-                List(filteredWebsites) { website in
-                    WebsiteRow(website: website)
-                }
-            }
-            .navigationTitle("Websites")
-            .toolbar {
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        isSorted.toggle()
-                    }) {
-                        Text(isSorted ? "Unsort" : "Sort A-Z")
+                VStack(spacing: 16) {
+                    // Glassy search bar
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.white.opacity(0.7))
+                        TextField("Search websites...", text: $searchText)
+                            .foregroundColor(.white)
+                            .autocapitalization(.none)
+                            .disableAutocorrection(true)
                     }
+                    .padding()
+                    .background(BlurView(style: .systemUltraThinMaterialDark))
+                    .cornerRadius(15)
+                    .padding(.horizontal)
 
-                    ThemeToggleButton(isDarkMode: $isDarkMode)
+                    ScrollView {
+                        LazyVStack(spacing: 12) {
+                            ForEach(filteredWebsites) { website in
+                                WebsiteRow(website: website)
+                                    .background(Color.white.opacity(0.05))
+                                    .cornerRadius(16)
+                                    .padding(.horizontal)
+                                    .shadow(radius: 4)
+                            }
+                        }
+                        .padding(.vertical)
+                    }
                 }
-            }
-            .onAppear {
-                viewModel.fetchWebsites()
+                .navigationTitle("Websites")
+                .foregroundColor(.white)
+                .toolbar {
+                    ToolbarItemGroup(placement: .navigationBarTrailing) {
+                        Button(action: { isSorted.toggle() }) {
+                            Image(systemName: isSorted ? "arrow.up.arrow.down.circle.fill" : "arrow.up.arrow.down.circle")
+                                .foregroundColor(.white)
+                        }
+                        ThemeToggleButton(isDarkMode: $isDarkMode)
+                    }
+                }
+                .onAppear {
+                    viewModel.fetchWebsites()
+                }
             }
         }
     }
-
-
 }
