@@ -15,10 +15,9 @@ struct SVGImageView: View {
                 Image(uiImage: uiImage)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    // These two lines ensure the final SwiftUI image
-                    // respects the bounding box without cropping:
                     .frame(width: width, height: height)
             } else if loadFailed {
+                // Show an error placeholder
                 RoundedRectangle(cornerRadius: 8)
                     .fill(Color.gray)
                     .overlay(
@@ -30,6 +29,7 @@ struct SVGImageView: View {
                     )
                     .frame(width: width, height: height)
             } else {
+                // Show a loading placeholder
                 RoundedRectangle(cornerRadius: 8)
                     .fill(Color.gray.opacity(0.3))
                     .overlay(
@@ -62,12 +62,9 @@ struct SVGImageView: View {
                 return
             }
 
-            // If needed, set preserveAspectRatio explicitly before scaling:
+            // Optionally preserve aspect ratio if needed:
             // svgImage.bbImporter?.preserveAspectRatio = .xMidYMid
             // svgImage.bbImporter?.meetOrSlice = .meet
-
-            // Remove *UIScreen.main.scale to avoid oversized frames that crop:
-            svgImage.scaleToFit(inside: CGSize(width: width, height: height))
 
             guard
                 svgImage.size.width > 0,
@@ -80,9 +77,11 @@ struct SVGImageView: View {
                 return
             }
 
-            // Draw the scaled layer into a UIImage:
-            layer.frame = CGRect(origin: .zero, size: svgImage.size)
-            let renderer = UIGraphicsImageRenderer(size: svgImage.size)
+            // Render the SVG into a UIImage at its intrinsic size
+            let size = svgImage.size
+            layer.frame = CGRect(origin: .zero, size: size)
+            
+            let renderer = UIGraphicsImageRenderer(size: size)
             let image = renderer.image { ctx in
                 layer.render(in: ctx.cgContext)
             }
