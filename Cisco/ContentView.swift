@@ -1,3 +1,10 @@
+//
+//  ContentView.swift
+//  Cisco
+//
+//  Created by Dhruv Sharma on 10/04/2025.
+//
+
 import SwiftUI
 
 struct ContentView: View {
@@ -6,20 +13,27 @@ struct ContentView: View {
     @State private var isSorted = false
     @State private var searchText = ""
 
-    var filteredWebsites: [Website] {
-        let source = isSorted ? viewModel.websites.sorted(by: { $0.name < $1.name }) : viewModel.websites
-        if searchText.isEmpty { return source }
-        return source.filter {
-            $0.name.localizedCaseInsensitiveContains(searchText) ||
-            $0.url.localizedCaseInsensitiveContains(searchText) ||
-            $0.description.localizedCaseInsensitiveContains(searchText)
+    // Filters and optionally sorts the list based on search text
+    private var filteredWebsites: [Website] {
+        let source = isSorted
+            ? viewModel.websites.sorted { $0.name < $1.name }
+            : viewModel.websites
+
+        guard !searchText.isEmpty else {
+            return source
+        }
+
+        return source.filter { website in
+            website.name.localizedCaseInsensitiveContains(searchText)
+            || website.url.localizedCaseInsensitiveContains(searchText)
+            || website.description.localizedCaseInsensitiveContains(searchText)
         }
     }
 
     var body: some View {
         NavigationView {
             VStack(spacing: 12) {
-                // Search Bar
+                // Search bar
                 HStack(spacing: 8) {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.gray)
@@ -35,7 +49,7 @@ struct ContentView: View {
                 .padding(.horizontal)
                 .shadow(color: Color.black.opacity(0.05), radius: 2, x: 0, y: 1)
 
-                // Card-style website list
+                // Scrollable list of filtered websites
                 ScrollView {
                     LazyVStack(spacing: 12) {
                         ForEach(filteredWebsites) { website in
@@ -46,16 +60,21 @@ struct ContentView: View {
                     }
                     .padding(.top)
                 }
-
             }
             .navigationTitle("Websites")
             .toolbar {
+                // Top-right toolbar with sort and theme toggle buttons
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button(action: { isSorted.toggle() }) {
-                        Label(isSorted ? "Unsort" : "Sort A–Z", systemImage: isSorted ? "arrow.up.arrow.down.circle.fill" : "arrow.up.arrow.down.circle")
-                            .labelStyle(IconOnlyLabelStyle())
-                            .imageScale(.large)
-                            .foregroundColor(.accentColor)
+                        Label(
+                            isSorted ? "Unsort" : "Sort A–Z",
+                            systemImage: isSorted
+                                ? "arrow.up.arrow.down.circle.fill"
+                                : "arrow.up.arrow.down.circle"
+                        )
+                        .labelStyle(IconOnlyLabelStyle())
+                        .imageScale(.large)
+                        .foregroundColor(.accentColor)
                     }
 
                     ThemeToggleButton(isDarkMode: $isDarkMode)

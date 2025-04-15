@@ -1,3 +1,10 @@
+//
+//  WebsiteRow.swift
+//  Cisco
+//
+//  Created by Dhruv Sharma on 10/04/2025.
+//
+
 import SwiftUI
 
 struct WebsiteRow: View {
@@ -5,7 +12,7 @@ struct WebsiteRow: View {
 
     var body: some View {
         HStack(alignment: .center, spacing: 16) {
-            // Consistent 48x48 icon
+            // Handles SVGs, images, or fallback to system icon
             Group {
                 if let iconURL = website.icon {
                     if iconURL.hasSuffix(".svg") {
@@ -64,7 +71,7 @@ struct WebsiteRow: View {
             Spacer()
         }
         .padding(16)
-        .frame(maxWidth: .infinity, minHeight: 80, alignment: .center) // Ensures uniform height
+        .frame(maxWidth: .infinity, minHeight: 80, alignment: .center)
         .background(Color(UIColor.secondarySystemBackground))
         .cornerRadius(12)
         .shadow(color: Color.black.opacity(0.05), radius: 1, x: 0, y: 1)

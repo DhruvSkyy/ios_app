@@ -3,6 +3,8 @@ import XCTest
 
 final class CiscoTests: XCTestCase {
 
+    /// Tests that the `Website` model correctly decodes valid JSON.
+    /// Verifies that each field is mapped as expected.
     func testWebsiteModelDecoding() {
         let json = """
         {
@@ -25,6 +27,9 @@ final class CiscoTests: XCTestCase {
         }
     }
 
+    /// Tests that the `WebsiteViewModel` fetches and decodes data successfully
+    /// when given a mocked session returning valid JSON.
+    /// Asserts that the data is correctly published to the `websites` array.
     func testWebsiteViewModelFetchSuccess() {
         let expectation = XCTestExpectation(description: "Fetch websites")
 
@@ -55,6 +60,8 @@ final class CiscoTests: XCTestCase {
 
 // MARK: - Mocks
 
+/// A fake URLSession that returns predefined data instead of performing a real network call.
+/// Used to test the view model's behaviour in isolation.
 final class MockURLSession: URLSessionProtocol {
     let data: Data?
 
@@ -72,6 +79,8 @@ final class MockURLSession: URLSessionProtocol {
     }
 }
 
+/// A fake URLSessionDataTask that simply runs a closure when `resume()` is called.
+/// Used to simulate network responses.
 final class MockURLSessionDataTask: URLSessionDataTaskProtocol {
     private let closure: @Sendable () -> Void
 

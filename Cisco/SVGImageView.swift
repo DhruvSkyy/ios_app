@@ -1,3 +1,10 @@
+//
+//  SVGImageView.swift
+//  Cisco
+//
+//  Created by Dhruv Sharma on 10/04/2025.
+//
+
 import SwiftUI
 import SVGKit
 
@@ -17,7 +24,7 @@ struct SVGImageView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: width, height: height)
             } else if loadFailed {
-                // Show an error placeholder
+                // Error placeholder
                 RoundedRectangle(cornerRadius: 8)
                     .fill(Color.gray)
                     .overlay(
@@ -29,7 +36,7 @@ struct SVGImageView: View {
                     )
                     .frame(width: width, height: height)
             } else {
-                // Show a loading placeholder
+                // Loading placeholder
                 RoundedRectangle(cornerRadius: 8)
                     .fill(Color.gray.opacity(0.3))
                     .overlay(
@@ -62,10 +69,7 @@ struct SVGImageView: View {
                 return
             }
 
-            // Optionally preserve aspect ratio if needed:
-            // svgImage.bbImporter?.preserveAspectRatio = .xMidYMid
-            // svgImage.bbImporter?.meetOrSlice = .meet
-
+            // Ensure the SVG is valid and has a renderable layer
             guard
                 svgImage.size.width > 0,
                 svgImage.size.height > 0,
@@ -77,10 +81,10 @@ struct SVGImageView: View {
                 return
             }
 
-            // Render the SVG into a UIImage at its intrinsic size
+            // Render SVG into a UIImage using Core Graphics
             let size = svgImage.size
             layer.frame = CGRect(origin: .zero, size: size)
-            
+
             let renderer = UIGraphicsImageRenderer(size: size)
             let image = renderer.image { ctx in
                 layer.render(in: ctx.cgContext)
