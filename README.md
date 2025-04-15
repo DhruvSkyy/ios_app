@@ -1,4 +1,4 @@
-# Cisco – Website Directory iOS App
+# Website Directory iOS App
 
 This SwiftUI-based iOS app displays a list of websites loaded from a remote JSON source. Each entry shows the website’s name, description, and icon. Users can open websites in Safari, search and filter entries, toggle between light and dark mode, and sort them alphabetically.
 
