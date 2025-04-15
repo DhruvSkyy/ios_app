@@ -1,5 +1,5 @@
 import XCTest
-@testable import Cisco 
+@testable import website_browser
 
 final class CiscoTests: XCTestCase {
 
