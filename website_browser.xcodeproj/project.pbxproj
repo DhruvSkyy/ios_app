@@ -36,11 +36,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		FCD951622DA83957004EB950 /* Cisco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cisco.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FCD951732DA83958004EB950 /* CiscoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CiscoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FCD9517D2DA83958004EB950 /* CiscoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CiscoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCD951622DA83957004EB950 /* website_browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = website_browser.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCD951732DA83958004EB950 /* website_browserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = website_browserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCD9517D2DA83958004EB950 /* website_browserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = website_browserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCD9519E2DAD789C004EB950 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		FCD951AC2DAD892F004EB950 /* CiscoTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CiscoTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCD951AC2DAD892F004EB950 /* website_browserTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = website_browserTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -102,10 +102,10 @@
 		FCD951632DA83957004EB950 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FCD951622DA83957004EB950 /* Cisco.app */,
-				FCD951732DA83958004EB950 /* CiscoTests.xctest */,
-				FCD9517D2DA83958004EB950 /* CiscoUITests.xctest */,
-				FCD951AC2DAD892F004EB950 /* CiscoTest.xctest */,
+				FCD951622DA83957004EB950 /* website_browser.app */,
+				FCD951732DA83958004EB950 /* website_browserTests.xctest */,
+				FCD9517D2DA83958004EB950 /* website_browserUITests.xctest */,
+				FCD951AC2DAD892F004EB950 /* website_browserTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,9 +113,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FCD951612DA83957004EB950 /* Cisco */ = {
+		FCD951612DA83957004EB950 /* website_browser */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FCD951872DA83958004EB950 /* Build configuration list for PBXNativeTarget "Cisco" */;
+			buildConfigurationList = FCD951872DA83958004EB950 /* Build configuration list for PBXNativeTarget "website_browser" */;
 			buildPhases = (
 				FCD9515E2DA83957004EB950 /* Sources */,
 				FCD9515F2DA83957004EB950 /* Frameworks */,
@@ -128,17 +128,17 @@
 			fileSystemSynchronizedGroups = (
 				FCD951642DA83957004EB950 /* Cisco */,
 			);
-			name = Cisco;
+			name = website_browser;
 			packageProductDependencies = (
 				FCD9519C2DAD66D1004EB950 /* SVGKit */,
 			);
 			productName = Cisco;
-			productReference = FCD951622DA83957004EB950 /* Cisco.app */;
+			productReference = FCD951622DA83957004EB950 /* website_browser.app */;
 			productType = "com.apple.product-type.application";
 		};
-		FCD951722DA83958004EB950 /* CiscoTests */ = {
+		FCD951722DA83958004EB950 /* website_browserTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FCD9518A2DA83958004EB950 /* Build configuration list for PBXNativeTarget "CiscoTests" */;
+			buildConfigurationList = FCD9518A2DA83958004EB950 /* Build configuration list for PBXNativeTarget "website_browserTests" */;
 			buildPhases = (
 				FCD9516F2DA83958004EB950 /* Sources */,
 				FCD951702DA83958004EB950 /* Frameworks */,
@@ -149,16 +149,16 @@
 			dependencies = (
 				FCD951752DA83958004EB950 /* PBXTargetDependency */,
 			);
-			name = CiscoTests;
+			name = website_browserTests;
 			packageProductDependencies = (
 			);
 			productName = CiscoTests;
-			productReference = FCD951732DA83958004EB950 /* CiscoTests.xctest */;
+			productReference = FCD951732DA83958004EB950 /* website_browserTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		FCD9517C2DA83958004EB950 /* CiscoUITests */ = {
+		FCD9517C2DA83958004EB950 /* website_browserUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FCD9518D2DA83958004EB950 /* Build configuration list for PBXNativeTarget "CiscoUITests" */;
+			buildConfigurationList = FCD9518D2DA83958004EB950 /* Build configuration list for PBXNativeTarget "website_browserUITests" */;
 			buildPhases = (
 				FCD951792DA83958004EB950 /* Sources */,
 				FCD9517A2DA83958004EB950 /* Frameworks */,
@@ -169,16 +169,16 @@
 			dependencies = (
 				FCD9517F2DA83958004EB950 /* PBXTargetDependency */,
 			);
-			name = CiscoUITests;
+			name = website_browserUITests;
 			packageProductDependencies = (
 			);
 			productName = CiscoUITests;
-			productReference = FCD9517D2DA83958004EB950 /* CiscoUITests.xctest */;
+			productReference = FCD9517D2DA83958004EB950 /* website_browserUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		FCD951AB2DAD892F004EB950 /* CiscoTest */ = {
+		FCD951AB2DAD892F004EB950 /* website_browserTest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FCD951B22DAD892F004EB950 /* Build configuration list for PBXNativeTarget "CiscoTest" */;
+			buildConfigurationList = FCD951B22DAD892F004EB950 /* Build configuration list for PBXNativeTarget "website_browserTest" */;
 			buildPhases = (
 				FCD951A82DAD892F004EB950 /* Sources */,
 				FCD951A92DAD892F004EB950 /* Frameworks */,
@@ -192,11 +192,11 @@
 			fileSystemSynchronizedGroups = (
 				FCD951AD2DAD892F004EB950 /* CiscoTest */,
 			);
-			name = CiscoTest;
+			name = website_browserTest;
 			packageProductDependencies = (
 			);
 			productName = CiscoTest;
-			productReference = FCD951AC2DAD892F004EB950 /* CiscoTest.xctest */;
+			productReference = FCD951AC2DAD892F004EB950 /* website_browserTest.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -227,7 +227,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FCD9515D2DA83957004EB950 /* Build configuration list for PBXProject "Cisco" */;
+			buildConfigurationList = FCD9515D2DA83957004EB950 /* Build configuration list for PBXProject "website_browser" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -244,10 +244,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FCD951612DA83957004EB950 /* Cisco */,
-				FCD951722DA83958004EB950 /* CiscoTests */,
-				FCD9517C2DA83958004EB950 /* CiscoUITests */,
-				FCD951AB2DAD892F004EB950 /* CiscoTest */,
+				FCD951612DA83957004EB950 /* website_browser */,
+				FCD951722DA83958004EB950 /* website_browserTests */,
+				FCD9517C2DA83958004EB950 /* website_browserUITests */,
+				FCD951AB2DAD892F004EB950 /* website_browserTest */,
 			);
 		};
 /* End PBXProject section */
@@ -318,17 +318,17 @@
 /* Begin PBXTargetDependency section */
 		FCD951752DA83958004EB950 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FCD951612DA83957004EB950 /* Cisco */;
+			target = FCD951612DA83957004EB950 /* website_browser */;
 			targetProxy = FCD951742DA83958004EB950 /* PBXContainerItemProxy */;
 		};
 		FCD9517F2DA83958004EB950 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FCD951612DA83957004EB950 /* Cisco */;
+			target = FCD951612DA83957004EB950 /* website_browser */;
 			targetProxy = FCD9517E2DA83958004EB950 /* PBXContainerItemProxy */;
 		};
 		FCD951B12DAD892F004EB950 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FCD951612DA83957004EB950 /* Cisco */;
+			target = FCD951612DA83957004EB950 /* website_browser */;
 			targetProxy = FCD951B02DAD892F004EB950 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -541,7 +541,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cisco.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Cisco";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/website_browser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/website_browser";
 				XROS_DEPLOYMENT_TARGET = 2.1;
 			};
 			name = Debug;
@@ -563,7 +563,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cisco.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Cisco";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/website_browser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/website_browser";
 				XROS_DEPLOYMENT_TARGET = 2.1;
 			};
 			name = Release;
@@ -628,7 +628,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cisco.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Cisco";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/website_browser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/website_browser";
 			};
 			name = Debug;
 		};
@@ -649,7 +649,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "CiscoTest/CiscoTest-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cisco.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Cisco";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/website_browser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/website_browser";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -657,7 +657,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FCD9515D2DA83957004EB950 /* Build configuration list for PBXProject "Cisco" */ = {
+		FCD9515D2DA83957004EB950 /* Build configuration list for PBXProject "website_browser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FCD951852DA83958004EB950 /* Debug */,
@@ -666,7 +666,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FCD951872DA83958004EB950 /* Build configuration list for PBXNativeTarget "Cisco" */ = {
+		FCD951872DA83958004EB950 /* Build configuration list for PBXNativeTarget "website_browser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FCD951882DA83958004EB950 /* Debug */,
@@ -675,7 +675,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FCD9518A2DA83958004EB950 /* Build configuration list for PBXNativeTarget "CiscoTests" */ = {
+		FCD9518A2DA83958004EB950 /* Build configuration list for PBXNativeTarget "website_browserTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FCD9518B2DA83958004EB950 /* Debug */,
@@ -684,7 +684,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FCD9518D2DA83958004EB950 /* Build configuration list for PBXNativeTarget "CiscoUITests" */ = {
+		FCD9518D2DA83958004EB950 /* Build configuration list for PBXNativeTarget "website_browserUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FCD9518E2DA83958004EB950 /* Debug */,
@@ -693,7 +693,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FCD951B22DAD892F004EB950 /* Build configuration list for PBXNativeTarget "CiscoTest" */ = {
+		FCD951B22DAD892F004EB950 /* Build configuration list for PBXNativeTarget "website_browserTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FCD951B32DAD892F004EB950 /* Debug */,
