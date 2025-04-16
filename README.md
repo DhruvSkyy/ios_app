@@ -1,6 +1,6 @@
 # Website Directory iOS App
 
-This SwiftUI-based iOS app displays a list of websites loaded from a remote JSON source. Each entry shows the website’s name, description, and icon. Users can open websites in Safari, search and filter entries, toggle between light and dark mode, and sort them alphabetically.
+This Swift-based iOS app displays a list of websites loaded from a remote JSON source. Each entry shows the website’s name, description, and icon. Users can open websites in Safari, search and filter entries, toggle between light and dark mode, and sort them alphabetically.
 
 ## Features
 
@@ -14,7 +14,7 @@ This SwiftUI-based iOS app displays a list of websites loaded from a remote JSON
 
 ## SVG icon support
 
-SwiftUI's built-in `AsyncImage` does not support `.svg` files. To address this, a custom `SVGImageView` was implemented using SVGKit. It loads, parses, and renders SVGs as `UIImage` objects that can be displayed in SwiftUI.
+Swift's built-in `AsyncImage` does not support `.svg` files. To address this, a custom `SVGImageView` was implemented using SVGKit. It loads, parses, and renders SVGs as `UIImage` objects that can be displayed in Swift.
 
 If an SVG fails to load due to a network issue or malformed structure, a fallback placeholder icon is shown. This prevents blank spaces or layout issues, and avoids crashes caused by rendering errors in CALayer.
 
